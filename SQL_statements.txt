@@ -1,0 +1,24 @@
+#Question 1
+SELECT COUNT(*)
+FROM Orders, Shippers
+WHERE Orders.ShipperID == Shippers.ShipperID
+	AND Shippers.ShipperName == "Speedy Express";
+    
+#Question 2
+SELECT Employees.LastName, Employees.EmployeeID, (COUNT(*))
+FROM Orders, Employees
+WHERE Employees.EmployeeID == Orders.EmployeeID
+GROUP BY Orders.EmployeeID
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+
+#Question 3
+SELECT Products.ProductName, COUNT(*)
+FROM Products, Customers, Orders, OrderDetails
+WHERE Customers.Country == "Germany"
+	AND Customers.CustomerID == Orders.CustomerID
+    AND Orders.OrderID == OrderDetails.OrderID
+    AND Products.ProductID == OrderDetails.ProductID
+GROUP BY Products.ProductName
+ORDER BY count(*) DESC
+LIMIT 1;
